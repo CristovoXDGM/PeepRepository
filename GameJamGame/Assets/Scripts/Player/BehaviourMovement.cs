@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof(Rigidbody))]
 public class BehaviourMovement : MonoBehaviour {
 
-	public float Speed = 5f;
-	public float JumpHeight = 2f;
+    [Range(1, 10)]
+    public float Speed = 5f;
+    [Range(1, 10)]
+    public float JumpHeight = 2f;
 	public float GroundDistance = 0.2f;
 	public float DashDistance = 5f;
 	public LayerMask Ground;

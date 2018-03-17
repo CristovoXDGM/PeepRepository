@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +18,7 @@ public class LifePlayerBehaviour : MonoBehaviour {
 
 	private Animator anim;
 	//private AudioSource playerAudio;
-	PlayerController playerMovement;
+	BehaviourMovement playerMovement;
 	private bool isDead;
 	private bool hadDamage;
 
@@ -26,7 +26,7 @@ public class LifePlayerBehaviour : MonoBehaviour {
 	void Awake(){
 
 		anim = GetComponent<Animator> ();
-		playerMovement = GetComponent<PlayerController> ();
+		playerMovement = GetComponent<BehaviourMovement> ();
 		actualLife = startLife;
 
 	}
