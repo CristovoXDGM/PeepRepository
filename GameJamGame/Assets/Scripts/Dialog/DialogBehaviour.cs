@@ -7,7 +7,7 @@ public class DialogBehaviour : MonoBehaviour {
 
     public Text nameText;
     public Text dialogueText;
-
+    
     public Queue<string> sentences;
 
     //public Animator anim; <--- utilizar para fazer animações com as caixas de dialogo
