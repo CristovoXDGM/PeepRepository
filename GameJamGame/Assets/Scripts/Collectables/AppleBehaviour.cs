@@ -6,24 +6,23 @@ public class AppleBehaviour : MonoBehaviour {
 
 	private GameObject player;
     
-	public Text text;
+	public Text scoreT;
 	private bool isVisible = true;
 	public AudioClip ColectSound;
-    
+    LifePlayerBehaviour lifee;
+
     public static int score;
+    [HideInInspector]
+    public int aux_score;
 	// Use this for initialization
 	void Awake () {
-        
-		text.text = "Score: " + score.ToString();
+        score = 0;
+
+        scoreT.text = "Score: " + score.ToString();
 
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-       
-
-	}
+	
 
 	void OnTriggerEnter(){
 			
@@ -34,8 +33,16 @@ public class AppleBehaviour : MonoBehaviour {
 		    isVisible = false;
 		if (isVisible == false  ) {
 			score += 20;
-			text.text = "Score: " + score.ToString();
-		}
+			scoreT.text = "Score: " + score.ToString();
+            LifePlayerBehaviour.actualLife += 20;
+
+        }
+
+        if(score == 100) {
+            LifePlayerBehaviour.lifeCounter += 1;
+        }
+
+        
 	}
 
     

@@ -6,16 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class LifePlayerBehaviour : MonoBehaviour {
 
+    AppleBehaviour score;
 
-	public int startLife = 100;
-	public int actualLife;
-	public Slider lifeSlider;
+    public static int lifeCounter = 3;
+    public int startLife = 100;
+	public static int actualLife;
+    
+    public Text lifeCount;
+    public Slider lifeSlider;
 	public Image damageImage;
+
 
 	public float flashVelo = 5f;
 	public Color flashColor = new Color(1f,0f,0f,0.1f);
 	public AudioClip hurtSound;
 
+    [HideInInspector]
+   
 	private Animator anim;
 	//private AudioSource playerAudio;
 	BehaviourMovement playerMovement;
@@ -24,22 +31,25 @@ public class LifePlayerBehaviour : MonoBehaviour {
 
 
 	void Awake(){
-
-		anim = GetComponent<Animator> ();
+       
+        lifeCount.text = lifeCounter.ToString();
+        anim = GetComponent<Animator> ();
 		playerMovement = GetComponent<BehaviourMovement> ();
 		actualLife = startLife;
 
 	}
 
+     void Update() {
 
+        lifeSlider.value = actualLife;
+        lifeCount.text = lifeCounter.ToString();
+        if (actualLife > 100) {
+            actualLife = 100;
+        }
+       
+    }
 	
-	// Update is called once per frame
-	void Update () {
-
-
-
-
-	}
+	
 
 	public void HasDamage(int life){
 	
@@ -50,7 +60,7 @@ public class LifePlayerBehaviour : MonoBehaviour {
 		GetComponent<AudioSource> ().PlayOneShot (hurtSound);
 
 		if (actualLife <= 0 && !isDead) {
-		
+            
 			Die();
 			TimeTorestar ();
 		}
@@ -58,16 +68,17 @@ public class LifePlayerBehaviour : MonoBehaviour {
 	}
 
 	void Die(){
-		
 
-		isDead = true;
+        lifeCounter--;
+        lifeCount.text = lifeCounter.ToString();
+
+        isDead = true;
 		anim.SetTrigger ("isDead");
+        playerMovement.enabled = false;
 
-		playerMovement.enabled = false;
-       
         
 
-	}
+    }
 
 	public void TimeTorestar(){
 
@@ -78,6 +89,6 @@ public class LifePlayerBehaviour : MonoBehaviour {
 	IEnumerator RestartLevel(){
 		yield return new WaitForSeconds (4);
 		SceneManager.LoadScene (2);
-
-	}
+        
+    }
 }

@@ -10,7 +10,7 @@ public class BehaviourMovement : MonoBehaviour {
     [Range(1, 10)]
     public float JumpHeight = 2f;
 	public float GroundDistance = 0.2f;
-	public float DashDistance = 5f;
+	//public float DashDistance = 5f;
 	public LayerMask Ground;
     public Transform groundCheck;
     public AudioClip jumpSound;
