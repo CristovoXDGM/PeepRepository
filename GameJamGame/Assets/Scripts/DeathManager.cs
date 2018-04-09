@@ -22,9 +22,12 @@ public class DeathManager : MonoBehaviour {
 
 		if (col.gameObject == player ) {
 
-			SceneManager.LoadScene (2);
+            
 
-		}
+            SceneManager.LoadScene (2);
+            LifePlayerBehaviour.lifeCounter--;
+
+        }
 
 	}
 
